@@ -1,0 +1,272 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0a0a0a;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    color: white;
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Центральная надпись */
+.main-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    text-align: center;
+}
+
+.main-title h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ff6b35, #f7931e, #ffeb3b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
+    margin-bottom: 0;
+    position: relative;
+    z-index: 11;
+}
+
+.title-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 200px;
+    background: radial-gradient(ellipse, rgba(255, 107, 53, 0.3) 0%, rgba(247, 147, 30, 0.2) 30%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: 9;
+}
+
+/* Контейнер для рядов */
+.rows-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    overflow: hidden;
+    padding: 10px 0;
+}
+
+/* Ряды */
+.row {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    margin: -25px 0;
+    min-height: 120px;
+    height: auto;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.row-inner {
+    display: flex;
+    align-items: center;
+    animation-duration: 120s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    gap: 80px;
+    width: 200%;
+    min-height: 120px;
+    height: auto;
+    position: relative;
+}
+
+.row-left .row-inner {
+    animation-name: scrollLeft;
+}
+
+.row-right .row-inner {
+    animation-name: scrollRight;
+}
+
+/* Анимации движения */
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scrollRight {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Группы компаний */
+.company-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    padding: 0 20px;
+    min-height: 140px;
+    height: auto;
+}
+
+/* Логотипы */
+.logo {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    max-width: 48px;
+    max-height: 48px;
+    border-radius: 12px;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+    flex-grow: 0;
+    box-sizing: border-box;
+}
+
+.logo::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(255, 107, 53, 0.4) 0%, rgba(247, 147, 30, 0.3) 40%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(15px);
+    z-index: -1;
+}
+
+/* Названия компаний */
+.company-group span {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+    min-width: 100px;
+    text-align: left;
+}
+
+/* Маска для затемнения элементов возле центральной надписи */
+.center-mask {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(10, 10, 10, 0.8) 0%, rgba(10, 10, 10, 0.6) 30%, rgba(10, 10, 10, 0.3) 50%, transparent 70%);
+    border-radius: 50%;
+    z-index: 8;
+    pointer-events: none;
+}
+
+/* Эффект затемнения для рядов, проходящих через центр */
+.row-below::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        transparent 35%, 
+        rgba(10, 10, 10, 0.4) 45%, 
+        rgba(10, 10, 10, 0.4) 55%, 
+        transparent 65%, 
+        transparent 100%);
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .main-title h1 {
+        font-size: 2.5rem;
+    }
+    
+    .title-glow {
+        width: 400px;
+        height: 150px;
+    }
+    
+    .center-mask {
+        width: 600px;
+        height: 300px;
+    }
+    
+    .logo {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        min-height: 36px;
+        max-width: 36px;
+        max-height: 36px;
+    }
+    
+    .company-group span {
+        font-size: 0.9rem;
+        min-width: 80px;
+    }
+    
+    .company-group {
+        gap: 10px;
+        padding: 0 15px;
+    }
+    
+    .row-inner {
+        gap: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title h1 {
+        font-size: 2rem;
+    }
+    
+    .logo {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        min-height: 32px;
+        max-width: 32px;
+        max-height: 32px;
+    }
+    
+    .company-group span {
+        font-size: 0.8rem;
+        min-width: 70px;
+    }
+    
+    .row-inner {
+        gap: 40px;
+    }
+}
