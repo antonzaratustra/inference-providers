@@ -86,7 +86,7 @@ body {
     white-space: nowrap;
     position: relative;
     overflow: hidden;
-    margin: -25px 0;
+    margin: -15px 0; /* Reduced negative margin to prevent overlap */
     min-height: 120px;
     height: auto;
     padding: 10px 0;
@@ -97,7 +97,7 @@ body {
     display: flex;
     align-items: center;
     gap: 80px;
-    width: 400%; /* Increased to accommodate duplicated content */
+    width: 700%; /* Increased to accommodate 7 copies of duplicated content */
     min-height: 120px;
     height: auto;
     position: relative;
