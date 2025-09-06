@@ -7,140 +7,247 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Центральная надпись -->
-        <div class="main-title">
-            <h1>Inference Providers</h1>
-            <div class="title-glow"></div>
-        </div>
-
-        <!-- Движущиеся ряды -->
-        <div class="rows-container">
-            <!-- Ряд 1 - движется влево -->
-            <div class="row row-left">
-                <div class="row-inner">
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/OpenAI.png')"></div><span>OpenAI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Microsoft Azure.png')"></div><span>Microsoft Azure</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/xAI.png')"></div><span>xAI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/VertexAI.png')"></div><span>Google Vertex AI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Anthropic.png')"></div><span>Anthropic</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/OpenAI.png')"></div><span>OpenAI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Microsoft Azure.png')"></div><span>Microsoft Azure</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/xAI.png')"></div><span>xAI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/VertexAI.png')"></div><span>Google Vertex AI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Anthropic.png')"></div><span>Anthropic</span></div>
-                </div>
+    <div class="container" id="mainContainer">
+        <!-- Mouse tracking area -->
+        <div class="mouse-tracking-area" id="mouseTrackingArea">
+            <!-- Центральная надпись -->
+            <div class="main-title">
+                <h1>Inference Providers</h1>
+                <div class="title-glow"></div>
             </div>
 
-            <!-- Ряд 2 - движется вправо -->
-            <div class="row row-right">
-                <div class="row-inner">
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/AWS Bedrok.png')"></div><span>AWS Bedrock</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Deepseek.png')"></div><span>Deepseek</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Mistral AI.png')"></div><span>MistralAI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Alibaba Cloud.png')"></div><span>Alibaba</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Parasail.png')"></div><span>Parasail</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/AWS Bedrok.png')"></div><span>AWS Bedrock</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Deepseek.png')"></div><span>Deepseek</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Mistral AI.png')"></div><span>MistralAI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Alibaba Cloud.png')"></div><span>Alibaba</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Parasail.png')"></div><span>Parasail</span></div>
+            <!-- Движущиеся ряды -->
+            <div class="rows-container">
+                <!-- Ряд 1 - движется влево -->
+                <div class="row row-left">
+                    <div class="row-inner">
+                        <!-- Duplicate content for infinite scrolling -->
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/OpenAI.png')"></div><span>OpenAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Microsoft Azure.png')"></div><span>Microsoft Azure</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/xAI.png')"></div><span>xAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/VertexAI.png')"></div><span>Google Vertex AI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Anthropic.png')"></div><span>Anthropic</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/OpenAI.png')"></div><span>OpenAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Microsoft Azure.png')"></div><span>Microsoft Azure</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/xAI.png')"></div><span>xAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/VertexAI.png')"></div><span>Google Vertex AI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Anthropic.png')"></div><span>Anthropic</span></div>
+                        
+                        <!-- Duplicate for seamless looping -->
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/OpenAI.png')"></div><span>OpenAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Microsoft Azure.png')"></div><span>Microsoft Azure</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/xAI.png')"></div><span>xAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/VertexAI.png')"></div><span>Google Vertex AI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Anthropic.png')"></div><span>Anthropic</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/OpenAI.png')"></div><span>OpenAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Microsoft Azure.png')"></div><span>Microsoft Azure</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/xAI.png')"></div><span>xAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/VertexAI.png')"></div><span>Google Vertex AI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Anthropic.png')"></div><span>Anthropic</span></div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Ряд 3 - движется влево -->
-            <div class="row row-left">
-                <div class="row-inner">
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Cerebras.png')"></div><span>Cerebras</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Nebius.png')"></div><span>Nebius</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/FireworksAI.png')"></div><span>Fireworks AI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Deepinfra.png')"></div><span>Deepinfra</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Novita.png')"></div><span>Novita</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Cerebras.png')"></div><span>Cerebras</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Nebius.png')"></div><span>Nebius</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/FireworksAI.png')"></div><span>Fireworks AI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Deepinfra.png')"></div><span>Deepinfra</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Novita.png')"></div><span>Novita</span></div>
+                <!-- Ряд 2 - движется вправо -->
+                <div class="row row-right">
+                    <div class="row-inner">
+                        <!-- Duplicate content for infinite scrolling -->
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/AWS Bedrok.png')"></div><span>AWS Bedrock</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Deepseek.png')"></div><span>Deepseek</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Mistral AI.png')"></div><span>MistralAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Alibaba Cloud.png')"></div><span>Alibaba</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Parasail.png')"></div><span>Parasail</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/AWS Bedrok.png')"></div><span>AWS Bedrock</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Deepseek.png')"></div><span>Deepseek</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Mistral AI.png')"></div><span>MistralAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Alibaba Cloud.png')"></div><span>Alibaba</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Parasail.png')"></div><span>Parasail</span></div>
+                        
+                        <!-- Duplicate for seamless looping -->
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/AWS Bedrok.png')"></div><span>AWS Bedrock</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Deepseek.png')"></div><span>Deepseek</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Mistral AI.png')"></div><span>MistralAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Alibaba Cloud.png')"></div><span>Alibaba</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Parasail.png')"></div><span>Parasail</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/AWS Bedrok.png')"></div><span>AWS Bedrock</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Deepseek.png')"></div><span>Deepseek</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Mistral AI.png')"></div><span>MistralAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Alibaba Cloud.png')"></div><span>Alibaba</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Parasail.png')"></div><span>Parasail</span></div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Ряд 4 - движется вправо (выше надписи) -->
-            <div class="row row-right row-above">
-                <div class="row-inner">
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Groq.png')"></div><span>Groq</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/TogetherAI.png')"></div><span>Together.ai</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Cloudflare Workers.png')"></div><span>Cloudflare Workers AI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/GMI.png')"></div><span>GMI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Hyperbolic.png')"></div><span>Hyperbolic</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Groq.png')"></div><span>Groq</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/TogetherAI.png')"></div><span>Together.ai</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Cloudflare Workers.png')"></div><span>Cloudflare Workers AI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/GMI.png')"></div><span>GMI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Hyperbolic.png')"></div><span>Hyperbolic</span></div>
+                <!-- Ряд 3 - движется влево -->
+                <div class="row row-left">
+                    <div class="row-inner">
+                        <!-- Duplicate content for infinite scrolling -->
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Cerebras.png')"></div><span>Cerebras</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Nebius.png')"></div><span>Nebius</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/FireworksAI.png')"></div><span>Fireworks AI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Deepinfra.png')"></div><span>Deepinfra</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Novita.png')"></div><span>Novita</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Cerebras.png')"></div><span>Cerebras</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Nebius.png')"></div><span>Nebius</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/FireworksAI.png')"></div><span>Fireworks AI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Deepinfra.png')"></div><span>Deepinfra</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Novita.png')"></div><span>Novita</span></div>
+                        
+                        <!-- Duplicate for seamless looping -->
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Cerebras.png')"></div><span>Cerebras</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Nebius.png')"></div><span>Nebius</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/FireworksAI.png')"></div><span>Fireworks AI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Deepinfra.png')"></div><span>Deepinfra</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Novita.png')"></div><span>Novita</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Cerebras.png')"></div><span>Cerebras</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Nebius.png')"></div><span>Nebius</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/FireworksAI.png')"></div><span>Fireworks AI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Deepinfra.png')"></div><span>Deepinfra</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Novita.png')"></div><span>Novita</span></div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Ряд 5 - движется влево (ниже надписи) -->
-            <div class="row row-left row-below">
-                <div class="row-inner">
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Lambda.png')"></div><span>Lambda</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Databricks.png')"></div><span>Databricks</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/SambaNova.png')"></div><span>SambaNova</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/FriendliAI.png')"></div><span>FriendlyAI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Snowflake.png')"></div><span>Snowflake</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Lambda.png')"></div><span>Lambda</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Databricks.png')"></div><span>Databricks</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/SambaNova.png')"></div><span>SambaNova</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/FriendliAI.png')"></div><span>FriendlyAI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Snowflake.png')"></div><span>Snowflake</span></div>
+                <!-- Ряд 4 - движется вправо (выше надписи) -->
+                <div class="row row-right row-above">
+                    <div class="row-inner">
+                        <!-- Duplicate content for infinite scrolling -->
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Groq.png')"></div><span>Groq</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/TogetherAI.png')"></div><span>Together.ai</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Cloudflare Workers.png')"></div><span>Cloudflare Workers AI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/GMI.png')"></div><span>GMI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Hyperbolic.png')"></div><span>Hyperbolic</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Groq.png')"></div><span>Groq</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/TogetherAI.png')"></div><span>Together.ai</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Cloudflare Workers.png')"></div><span>Cloudflare Workers AI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/GMI.png')"></div><span>GMI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Hyperbolic.png')"></div><span>Hyperbolic</span></div>
+                        
+                        <!-- Duplicate for seamless looping -->
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Groq.png')"></div><span>Groq</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/TogetherAI.png')"></div><span>Together.ai</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Cloudflare Workers.png')"></div><span>Cloudflare Workers AI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/GMI.png')"></div><span>GMI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Hyperbolic.png')"></div><span>Hyperbolic</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Groq.png')"></div><span>Groq</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/TogetherAI.png')"></div><span>Together.ai</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Cloudflare Workers.png')"></div><span>Cloudflare Workers AI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/GMI.png')"></div><span>GMI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Hyperbolic.png')"></div><span>Hyperbolic</span></div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Ряд 6 - движется вправо -->
-            <div class="row row-right">
-                <div class="row-inner">
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Replicate.png')"></div><span>Replicate</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Reka.png')"></div><span>Reka</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Cohere.png')"></div><span>Cohere</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/AI21labs.png')"></div><span>AI21 labs</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/fal.png')"></div><span>Fal AI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Replicate.png')"></div><span>Replicate</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Reka.png')"></div><span>Reka</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Cohere.png')"></div><span>Cohere</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/AI21labs.png')"></div><span>AI21 labs</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/fal.png')"></div><span>Fal AI</span></div>
+                <!-- Ряд 5 - движется влево (ниже надписи) -->
+                <div class="row row-left row-below">
+                    <div class="row-inner">
+                        <!-- Duplicate content for infinite scrolling -->
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Lambda.png')"></div><span>Lambda</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Databricks.png')"></div><span>Databricks</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/SambaNova.png')"></div><span>SambaNova</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/FriendliAI.png')"></div><span>FriendlyAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Snowflake.png')"></div><span>Snowflake</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Lambda.png')"></div><span>Lambda</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Databricks.png')"></div><span>Databricks</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/SambaNova.png')"></div><span>SambaNova</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/FriendliAI.png')"></div><span>FriendlyAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Snowflake.png')"></div><span>Snowflake</span></div>
+                        
+                        <!-- Duplicate for seamless looping -->
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Lambda.png')"></div><span>Lambda</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Databricks.png')"></div><span>Databricks</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/SambaNova.png')"></div><span>SambaNova</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/FriendliAI.png')"></div><span>FriendlyAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Snowflake.png')"></div><span>Snowflake</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Lambda.png')"></div><span>Lambda</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Databricks.png')"></div><span>Databricks</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/SambaNova.png')"></div><span>SambaNova</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/FriendliAI.png')"></div><span>FriendlyAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Snowflake.png')"></div><span>Snowflake</span></div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Ряд 7 - движется влево -->
-            <div class="row row-left">
-                <div class="row-inner">
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Nscale.png')"></div><span>Nscale</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/HF inference.png')"></div><span>HF inference</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/CompactifAI.png')"></div><span>CompactifAI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Cloudrift.png')"></div><span>CloudRift</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Baseten.png')"></div><span>Baseten</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Nscale.png')"></div><span>Nscale</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/HF inference.png')"></div><span>HF inference</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/CompactifAI.png')"></div><span>CompactifAI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Cloudrift.png')"></div><span>CloudRift</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Baseten.png')"></div><span>Baseten</span></div>
+                <!-- Ряд 6 - движется вправо -->
+                <div class="row row-right">
+                    <div class="row-inner">
+                        <!-- Duplicate content for infinite scrolling -->
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Replicate.png')"></div><span>Replicate</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Reka.png')"></div><span>Reka</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Cohere.png')"></div><span>Cohere</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/AI21labs.png')"></div><span>AI21 labs</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/fal.png')"></div><span>Fal AI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Replicate.png')"></div><span>Replicate</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Reka.png')"></div><span>Reka</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Cohere.png')"></div><span>Cohere</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/AI21labs.png')"></div><span>AI21 labs</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/fal.png')"></div><span>Fal AI</span></div>
+                        
+                        <!-- Duplicate for seamless looping -->
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Replicate.png')"></div><span>Replicate</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Reka.png')"></div><span>Reka</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Cohere.png')"></div><span>Cohere</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/AI21labs.png')"></div><span>AI21 labs</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/fal.png')"></div><span>Fal AI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Replicate.png')"></div><span>Replicate</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Reka.png')"></div><span>Reka</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Cohere.png')"></div><span>Cohere</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/AI21labs.png')"></div><span>AI21 labs</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/fal.png')"></div><span>Fal AI</span></div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Ряд 8 - движется вправо -->
-            <div class="row row-right">
-                <div class="row-inner">
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Lepton.png')"></div><span>Lepton</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/EdenAI.png')"></div><span>Eden AI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Runpod.png')"></div><span>Runpod</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Northflank.png')"></div><span>Northflank</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Inference.png')"></div><span>Inference</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Lepton.png')"></div><span>Lepton</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/EdenAI.png')"></div><span>Eden AI</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Runpod.png')"></div><span>Runpod</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Northflank.png')"></div><span>Northflank</span></div>
-                    <div class="company-group"><div class="logo" style="background-image: url('imgs/Inference.png')"></div><span>Inference</span></div>
+                <!-- Ряд 7 - движется влево -->
+                <div class="row row-left">
+                    <div class="row-inner">
+                        <!-- Duplicate content for infinite scrolling -->
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Nscale.png')"></div><span>Nscale</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/HF inference.png')"></div><span>HF inference</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/CompactifAI.png')"></div><span>CompactifAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Cloudrift.png')"></div><span>CloudRift</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Baseten.png')"></div><span>Baseten</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Nscale.png')"></div><span>Nscale</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/HF inference.png')"></div><span>HF inference</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/CompactifAI.png')"></div><span>CompactifAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Cloudrift.png')"></div><span>CloudRift</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Baseten.png')"></div><span>Baseten</span></div>
+                        
+                        <!-- Duplicate for seamless looping -->
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Nscale.png')"></div><span>Nscale</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/HF inference.png')"></div><span>HF inference</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/CompactifAI.png')"></div><span>CompactifAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Cloudrift.png')"></div><span>CloudRift</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Baseten.png')"></div><span>Baseten</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Nscale.png')"></div><span>Nscale</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/HF inference.png')"></div><span>HF inference</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/CompactifAI.png')"></div><span>CompactifAI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Cloudrift.png')"></div><span>CloudRift</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Baseten.png')"></div><span>Baseten</span></div>
+                    </div>
+                </div>
+
+                <!-- Ряд 8 - движется вправо -->
+                <div class="row row-right">
+                    <div class="row-inner">
+                        <!-- Duplicate content for infinite scrolling -->
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Lepton.png')"></div><span>Lepton</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/EdenAI.png')"></div><span>Eden AI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Runpod.png')"></div><span>Runpod</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Northflank.png')"></div><span>Northflank</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Inference.png')"></div><span>Inference</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Lepton.png')"></div><span>Lepton</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/EdenAI.png')"></div><span>Eden AI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Runpod.png')"></div><span>Runpod</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Northflank.png')"></div><span>Northflank</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Inference.png')"></div><span>Inference</span></div>
+                        
+                        <!-- Duplicate for seamless looping -->
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Lepton.png')"></div><span>Lepton</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/EdenAI.png')"></div><span>Eden AI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Runpod.png')"></div><span>Runpod</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Northflank.png')"></div><span>Northflank</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Inference.png')"></div><span>Inference</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Lepton.png')"></div><span>Lepton</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/EdenAI.png')"></div><span>Eden AI</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Runpod.png')"></div><span>Runpod</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Northflank.png')"></div><span>Northflank</span></div>
+                        <div class="company-group"><div class="logo" style="background-image: url('imgs/Inference.png')"></div><span>Inference</span></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -148,5 +255,46 @@
         <!-- Маска для затемнения элементов возле центральной надписи -->
         <div class="center-mask"></div>
     </div>
+
+    <!-- JavaScript for mouse tracking -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('mouseTrackingArea');
+            const rows = document.querySelectorAll('.row-inner');
+            
+            // Mouse move handler
+            container.addEventListener('mousemove', function(e) {
+                // Get container dimensions
+                const rect = container.getBoundingClientRect();
+                const containerWidth = rect.width;
+                
+                // Calculate mouse position as a percentage (0 to 1)
+                const mouseX = e.clientX - rect.left;
+                const mousePercent = mouseX / containerWidth;
+                
+                // Convert to movement range (-50 to 50)
+                // But we need to map this to -25 to 25 because we have 400% width and want to show 100% at a time
+                const movement = (mousePercent - 0.5) * 50;
+                
+                // Apply transformation to each row
+                rows.forEach((row, index) => {
+                    // For rows that move left (1, 3, 5, 7 - odd indices in 0-based)
+                    // and rows that move right (2, 4, 6, 8 - even indices in 0-based)
+                    const direction = (index % 2 === 0) ? 1 : -1;
+                    const translateX = movement * direction;
+                    
+                    // Apply transform
+                    row.style.transform = `translateX(${translateX}%)`;
+                });
+            });
+            
+            // Reset positions when mouse leaves
+            container.addEventListener('mouseleave', function() {
+                rows.forEach((row) => {
+                    row.style.transform = 'translateX(0)';
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -17,6 +17,17 @@ body {
     height: 100vh;
 }
 
+.mouse-tracking-area {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+}
+
+.mouse-tracking-area:active {
+    cursor: grabbing;
+}
+
 /* Центральная надпись */
 .main-title {
     position: absolute;
@@ -28,7 +39,7 @@ body {
 }
 
 .main-title h1 {
-    font-size: 4rem;
+    font-size: 6rem;
     font-weight: bold;
     background: linear-gradient(45deg, #ff6b35, #f7931e, #ffeb3b);
     -webkit-background-clip: text;
@@ -38,6 +49,7 @@ body {
     margin-bottom: 0;
     position: relative;
     z-index: 11;
+    white-space: nowrap;
 }
 
 .title-glow {
@@ -45,8 +57,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 600px;
-    height: 200px;
+    width: 900px;
+    height: 300px;
     background: radial-gradient(ellipse, rgba(255, 107, 53, 0.3) 0%, rgba(247, 147, 30, 0.2) 30%, transparent 70%);
     border-radius: 50%;
     filter: blur(40px);
@@ -84,41 +96,12 @@ body {
 .row-inner {
     display: flex;
     align-items: center;
-    animation-duration: 120s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
     gap: 80px;
-    width: 200%;
+    width: 400%; /* Increased to accommodate duplicated content */
     min-height: 120px;
     height: auto;
     position: relative;
-}
-
-.row-left .row-inner {
-    animation-name: scrollLeft;
-}
-
-.row-right .row-inner {
-    animation-name: scrollRight;
-}
-
-/* Анимации движения */
-@keyframes scrollLeft {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-@keyframes scrollRight {
-    0% {
-        transform: translateX(-50%);
-    }
-    100% {
-        transform: translateX(0);
-    }
+    transition: transform 0.1s ease-out;
 }
 
 /* Группы компаний */
@@ -180,8 +163,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 800px;
-    height: 400px;
+    width: 1200px;
+    height: 600px;
     background: radial-gradient(ellipse, rgba(10, 10, 10, 0.8) 0%, rgba(10, 10, 10, 0.6) 30%, rgba(10, 10, 10, 0.3) 50%, transparent 70%);
     border-radius: 50%;
     z-index: 8;
