@@ -149,10 +149,9 @@ body {
 
 /* Названия компаний */
 .company-group span {
-    font-size: 1.1rem;
+    font-size: 2.2rem;
     font-weight: 500;
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+    color: rgba(255, 255, 255, 0.2);
     min-width: 100px;
     text-align: left;
 }

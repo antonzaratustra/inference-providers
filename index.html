@@ -311,7 +311,7 @@
                         }
                         
                         // Auto-scroll speed (ultra-slow continuous movement)
-                        let autoScrollSpeed = 0.01;
+                        let autoScrollSpeed = 0.002;
                         basePositions[index] += autoScrollSpeed * direction;
                         
                         // Add initial offset (odd rows left by 20%, even rows left by 60%)
@@ -321,7 +321,7 @@
                             initialOffset = -20;
                         } else if (parentRow.classList.contains('row-right')) {
                             // Even rows - shift left more
-                            initialOffset = -60;
+                            initialOffset = -100;
                         }
                         
                         // Apply transform with initial offset
