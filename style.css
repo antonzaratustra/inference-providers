@@ -23,45 +23,35 @@ body {
     z-index: -1; /* Behind all other content */
 }
 
-/* Добавляем темную виньетку с эффектом аберраций по краям */
-.vignette-overlay {
-    position: fixed;
+/* Background darkening for rows */
+.rows-darken {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Darkening effect */
+    z-index: 0; /* Above WebGL background, below rows */
     pointer-events: none;
-    z-index: 100;
-    /* Создаем виньетку с радиальным градиентом */
-    background: radial-gradient(
-        ellipse at center,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0.1) 40%,
-        rgba(0, 0, 0, 0.4) 70%,
-        rgba(0, 0, 0, 0.8) 100%
-    );
-    /* Добавляем эффект аберраций по краям */
-    box-shadow: 
-        inset 0 0 100px 20px rgba(255, 0, 0, 0.05),
-        inset 0 0 150px 40px rgba(0, 255, 0, 0.03),
-        inset 0 0 200px 60px rgba(0, 0, 255, 0.02);
 }
 
 .container {
     position: relative;
     width: 100vw;
     height: 100vh;
+    z-index: 1; /* Above the darkening layer */
 }
 
-.mouse-tracking-area {
-    position: relative;
+/* Background darkening overlay */
+.background-darken {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    cursor: grab;
-}
-
-.mouse-tracking-area:active {
-    cursor: grabbing;
+    background: rgba(0, 0, 0, 0.8); /* Darkening effect */
+    z-index: 1;
+    pointer-events: none;
 }
 
 /* Центральная надпись */
@@ -127,6 +117,7 @@ body {
     height: auto;
     padding: 10px 0;
     width: 100%;
+    z-index: 1; /* Above the darkening layer */
 }
 
 .row-inner {
@@ -187,7 +178,7 @@ body {
 .company-group span {
     font-size: 2.2rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8); /* Increased from 0.2 to 0.8 for better visibility */
     min-width: 100px;
     text-align: left;
 }
@@ -257,6 +248,7 @@ body {
     .company-group span {
         font-size: 0.9rem;
         min-width: 80px;
+        color: rgba(255, 255, 255, 0.8); /* Increased from default to match desktop */
     }
     
     .company-group {
@@ -286,6 +278,7 @@ body {
     .company-group span {
         font-size: 0.8rem;
         min-width: 70px;
+        color: rgba(255, 255, 255, 0.8); /* Increased from default to match desktop */
     }
     
     .row-inner {
