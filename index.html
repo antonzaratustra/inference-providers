@@ -601,5 +601,254 @@
             });
         });
     </script>
+
+    <!-- JavaScript for interactive presentation mode -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Presentation state management
+            const presentationState = {
+                isActive: false,
+                currentIndex: 0,
+                companies: [],
+                totalCompanies: 0
+            };
+
+            // Get the main title element
+            const mainTitle = document.querySelector('.main-title h1');
+            
+            // Add click event listener to the main title to activate presentation
+            mainTitle.addEventListener('click', function() {
+                if (!presentationState.isActive) {
+                    startPresentation();
+                } else {
+                    cancelPresentation();
+                }
+            });
+
+            // Function to extract all unique companies from the DOM
+            function extractCompanies() {
+                const companyGroups = document.querySelectorAll('.company-group');
+                const companies = [];
+                const seenCompanies = new Set();
+                
+                companyGroups.forEach(group => {
+                    const name = group.querySelector('span').textContent;
+                    const logo = group.querySelector('.logo');
+                    const logoStyle = window.getComputedStyle(logo);
+                    const logoUrl = logoStyle.backgroundImage.slice(5, -2); // Remove 'url("' and '")'
+                    
+                    // Only add unique companies
+                    if (!seenCompanies.has(name)) {
+                        seenCompanies.add(name);
+                        companies.push({
+                            name: name,
+                            logoUrl: logoUrl,
+                            element: group,
+                            rowIndex: Array.from(group.closest('.row').parentElement.children).indexOf(group.closest('.row')),
+                            originalParent: group.parentElement
+                        });
+                    }
+                });
+                
+                return companies;
+            }
+
+            // Function to start the presentation
+            function startPresentation() {
+                presentationState.isActive = true;
+                presentationState.currentIndex = 0;
+                presentationState.companies = extractCompanies();
+                presentationState.totalCompanies = presentationState.companies.length;
+                
+                // Add presentation mode class to body
+                document.body.classList.add('presentation-mode');
+                
+                // Disable mouse tracking during presentation
+                const container = document.getElementById('mouseTrackingArea');
+                container.style.pointerEvents = 'none';
+                
+                // Pause all row animations
+                const rows = document.querySelectorAll('.row-inner');
+                rows.forEach(row => {
+                    row.style.transition = 'none';
+                });
+                
+                // Start the presentation sequence
+                presentCompany();
+            }
+
+            // Function to cancel the presentation
+            function cancelPresentation() {
+                presentationState.isActive = false;
+                
+                // Remove presentation mode class from body
+                document.body.classList.remove('presentation-mode');
+                
+                // Re-enable mouse tracking
+                const container = document.getElementById('mouseTrackingArea');
+                container.style.pointerEvents = 'auto';
+                
+                // Resume row animations
+                const rows = document.querySelectorAll('.row-inner');
+                rows.forEach(row => {
+                    row.style.transition = 'transform 0.1s ease-out';
+                });
+                
+                // Reset any modified elements
+                resetPresentationElements();
+            }
+
+            // Function to reset presentation elements
+            function resetPresentationElements() {
+                // Remove any presentation-specific elements
+                const presentationElements = document.querySelectorAll('.presentation-overlay');
+                presentationElements.forEach(el => el.remove());
+                
+                // Show all rows and title
+                const rowsContainer = document.querySelector('.rows-container');
+                if (rowsContainer) rowsContainer.style.opacity = '1';
+                if (mainTitle) mainTitle.style.opacity = '1';
+            }
+
+            // Function to present a single company
+            function presentCompany() {
+                if (!presentationState.isActive || presentationState.currentIndex >= presentationState.totalCompanies) {
+                    // Presentation complete
+                    cancelPresentation();
+                    return;
+                }
+                
+                const company = presentationState.companies[presentationState.currentIndex];
+                
+                // Fade out all rows and main title
+                const rowsContainer = document.querySelector('.rows-container');
+                if (rowsContainer) rowsContainer.style.transition = 'opacity 0.3s ease';
+                if (rowsContainer) rowsContainer.style.opacity = '0';
+                if (mainTitle) mainTitle.style.transition = 'opacity 0.3s ease';
+                if (mainTitle) mainTitle.style.opacity = '0';
+                
+                // After fade out, proceed with presentation
+                setTimeout(() => {
+                    // Create presentation overlay
+                    createPresentationOverlay(company);
+                }, 300);
+            }
+
+            // Function to create presentation overlay with animations
+            function createPresentationOverlay(company) {
+                // Create overlay element
+                const overlay = document.createElement('div');
+                overlay.className = 'presentation-overlay';
+                
+                // Create company presentation element
+                const companyPresentation = document.createElement('div');
+                companyPresentation.className = 'company-presentation';
+                
+                // Create logo element
+                const logo = document.createElement('div');
+                logo.className = 'presentation-logo';
+                logo.style.backgroundImage = `url('${company.logoUrl}')`;
+                
+                // Create company name element
+                const name = document.createElement('div');
+                name.className = 'presentation-name';
+                name.textContent = company.name;
+                
+                // Create description element
+                const description = document.createElement('div');
+                description.className = 'presentation-description';
+                
+                // Add elements to presentation
+                companyPresentation.appendChild(logo);
+                companyPresentation.appendChild(name);
+                companyPresentation.appendChild(description);
+                overlay.appendChild(companyPresentation);
+                document.body.appendChild(overlay);
+                
+                // Apply initial animation state
+                companyPresentation.style.transform = 'scale(0.5)';
+                companyPresentation.style.opacity = '0';
+                
+                // Animate company logo and name to center screen
+                setTimeout(() => {
+                    companyPresentation.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+                    companyPresentation.style.transform = 'scale(1)';
+                    companyPresentation.style.opacity = '1';
+                    
+                    // After centering, move to top of screen
+                    setTimeout(() => {
+                        companyPresentation.style.transition = 'transform 0.4s ease, top 0.4s ease';
+                        companyPresentation.style.top = '100px';
+                        
+                        // Type out description after moving to top
+                        setTimeout(() => {
+                            typeDescription(description, company.name, () => {
+                                // After typing, fade out description
+                                setTimeout(() => {
+                                    description.style.transition = 'opacity 0.3s ease';
+                                    description.style.opacity = '0';
+                                    
+                                    // After fade out, remove overlay and continue
+                                    setTimeout(() => {
+                                        overlay.remove();
+                                        
+                                        // Fade in rows and title
+                                        const rowsContainer = document.querySelector('.rows-container');
+                                        if (rowsContainer) rowsContainer.style.opacity = '1';
+                                        if (mainTitle) mainTitle.style.opacity = '1';
+                                        
+                                        // Move to next company
+                                        presentationState.currentIndex++;
+                                        presentCompany();
+                                    }, 300);
+                                }, 1000);
+                            });
+                        }, 300);
+                    }, 400);
+                }, 100);
+            }
+
+            // Function to type out description
+            function typeDescription(element, companyName, callback) {
+                // Placeholder description - in a real implementation, this would come from a data source
+                const descriptions = {
+                    'OpenAI': 'OpenAI is an artificial intelligence research laboratory consisting of the for-profit corporation OpenAI LP and its parent company, the non-profit OpenAI Inc. The company aims to develop safe and beneficial artificial general intelligence.',
+                    'Microsoft Azure': 'Microsoft Azure is a cloud computing service created by Microsoft for building, testing, deploying, and managing applications and services through Microsoft-managed data centers. It provides SaaS, PaaS, and IaaS offerings.',
+                    'xAI': 'xAI is Elon Musk\'s artificial intelligence company, focused on understanding the universe. The company aims to build artificial intelligence that benefits humanity as a whole.',
+                    'Google Vertex AI': 'Vertex AI is Google Cloud\'s unified platform for machine learning (ML) and artificial intelligence (AI). It enables data scientists and ML engineers to build, deploy, and scale ML models faster.',
+                    'Anthropic': 'Anthropic is an American AI safety company that focuses on developing AI systems that are safe, steerable, and beneficial. They are known for their Constitutional AI approach to training helpful, harmless, and honest AI assistants.',
+                    'AWS Bedrock': 'Amazon Bedrock is a fully managed service that offers a choice of high-performing foundation models (FMs) from leading AI companies. It makes it easy to build and scale generative AI applications.',
+                    'Deepseek': 'DeepSeek is a Chinese AI company that develops large language models and AI infrastructure. They focus on creating efficient and powerful AI models for various applications.',
+                    'MistralAI': 'Mistral AI is a French company focused on developing efficient and powerful language models. They are known for their open-source approach and high-performance models.',
+                    'Alibaba': 'Alibaba Cloud provides comprehensive cloud computing services to businesses worldwide. Their Tongyi Lab develops large AI models including Qwen, a series of large language models.',
+                    'Parasail': 'Parasail is an AI company focused on developing advanced computer vision and machine learning technologies for various applications.'
+                };
+                
+                const description = descriptions[companyName] || `This is a description for ${companyName}. As a leading provider in the AI inference space, ${companyName} delivers cutting-edge solutions for machine learning model deployment and optimization.`;
+                
+                let i = 0;
+                element.style.opacity = '1';
+                
+                function type() {
+                    if (i < description.length) {
+                        element.textContent += description.charAt(i);
+                        i++;
+                        setTimeout(type, 20); // Adjust typing speed as needed
+                    } else {
+                        callback();
+                    }
+                }
+                
+                type();
+            }
+
+            // Add ESC key listener to cancel presentation
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && presentationState.isActive) {
+                    cancelPresentation();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
