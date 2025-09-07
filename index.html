@@ -284,54 +284,116 @@
             // Set initial positions
             setInitialPositions();
             
+            // Variables to track mouse state
+            let isMouseOver = false;
+            let mouseX = 0;
+            let containerWidth = 0;
+            
+            // Store base positions for auto-scrolling
+            let basePositions = [];
+            rows.forEach((row, index) => {
+                basePositions[index] = 0;
+            });
+            
+            // Start auto-scrolling animation
+            function startAutoScroll() {
+                if (!isMouseOver) {
+                    rows.forEach((row, index) => {
+                        // Get the parent row element to check its CSS class
+                        const parentRow = row.parentElement;
+                        
+                        // Determine direction based on CSS class
+                        let direction = 1; // default direction
+                        if (parentRow.classList.contains('row-left')) {
+                            direction = -1; // move left
+                        } else if (parentRow.classList.contains('row-right')) {
+                            direction = 1; // move right
+                        }
+                        
+                        // Auto-scroll speed (ultra-slow continuous movement)
+                        let autoScrollSpeed = 0.01;
+                        basePositions[index] += autoScrollSpeed * direction;
+                        
+                        // Add initial offset (odd rows left by 20%, even rows left by 60%)
+                        let initialOffset = 0;
+                        if (parentRow.classList.contains('row-left')) {
+                            // Odd rows - shift left
+                            initialOffset = -20;
+                        } else if (parentRow.classList.contains('row-right')) {
+                            // Even rows - shift left more
+                            initialOffset = -60;
+                        }
+                        
+                        // Apply transform with initial offset
+                        row.style.transform = `translateX(${basePositions[index] + initialOffset}%)`;
+                    });
+                    
+                    requestAnimationFrame(startAutoScroll);
+                }
+            }
+            
+            // Start the auto-scrolling
+            startAutoScroll();
+            
+            // Mouse enter handler
+            container.addEventListener('mouseenter', function(e) {
+                isMouseOver = true;
+            });
+            
             // Mouse move handler
             container.addEventListener('mousemove', function(e) {
                 // Get container dimensions
                 const rect = container.getBoundingClientRect();
-                const containerWidth = rect.width;
+                containerWidth = rect.width;
                 
                 // Calculate mouse position as a percentage (0 to 1)
-                const mouseX = e.clientX - rect.left;
-                const mousePercent = mouseX / containerWidth;
+                mouseX = e.clientX - rect.left;
                 
-                // Convert to movement range (-150 to 150) for proper infinite scrolling with 7 copies
-                // Reduce speed by factor of 8 (dividing by 8)
-                const movement = (mousePercent - 0.5) * 300 / 8;
-                
-                // Apply transformation to each row
-                rows.forEach((row, index) => {
-                    // Get the parent row element to check its CSS class
-                    const parentRow = row.parentElement;
+                // Only apply mouse control when mouse is over container
+                if (isMouseOver) {
+                    const mousePercent = mouseX / containerWidth;
                     
-                    // Determine direction based on CSS class
-                    let direction = 1; // default direction
-                    if (parentRow.classList.contains('row-left')) {
-                        direction = -1; // move left
-                    } else if (parentRow.classList.contains('row-right')) {
-                        direction = 1; // move right
-                    }
+                    // Convert to movement range (-150 to 150) for proper infinite scrolling with 7 copies
+                    // Reduce speed by factor of 8 (dividing by 8)
+                    const movement = (mousePercent - 0.5) * 300 / 8;
                     
-                    // Calculate the transform
-                    let translateX = movement * direction;
-                    
-                    // Add initial offset (odd rows left by 20%, even rows left by 60%)
-                    let initialOffset = 0;
-                    if (parentRow.classList.contains('row-left')) {
-                        // Odd rows - shift left
-                        initialOffset = -20;
-                    } else if (parentRow.classList.contains('row-right')) {
-                        // Even rows - shift left more
-                        initialOffset = -60;
-                    }
-                    
-                    // Apply transform with initial offset
-                    row.style.transform = `translateX(${translateX + initialOffset}%)`;
-                });
+                    // Apply transformation to each row
+                    rows.forEach((row, index) => {
+                        // Get the parent row element to check its CSS class
+                        const parentRow = row.parentElement;
+                        
+                        // Determine direction based on CSS class
+                        let direction = 1; // default direction
+                        if (parentRow.classList.contains('row-left')) {
+                            direction = -1; // move left
+                        } else if (parentRow.classList.contains('row-right')) {
+                            direction = 1; // move right
+                        }
+                        
+                        // Calculate the transform
+                        let translateX = movement * direction;
+                        
+                        // Add initial offset (odd rows left by 20%, even rows left by 60%)
+                        let initialOffset = 0;
+                        if (parentRow.classList.contains('row-left')) {
+                            // Odd rows - shift left
+                            initialOffset = -20;
+                        } else if (parentRow.classList.contains('row-right')) {
+                            // Even rows - shift left more
+                            initialOffset = -60;
+                        }
+                        
+                        // Apply transform with initial offset
+                        row.style.transform = `translateX(${translateX + initialOffset}%)`;
+                    });
+                }
             });
             
-            // Reset positions when mouse leaves (back to initial positions)
+            // Mouse leave handler
             container.addEventListener('mouseleave', function() {
-                setInitialPositions();
+                isMouseOver = false;
+                // Resume auto-scrolling when mouse leaves
+                startAutoScroll();
             });
         });
     </script>
