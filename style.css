@@ -71,7 +71,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
+    text-shadow: 0 0 30px rgba(255, 107, 53, 0.8); /* Increased opacity from 0.5 to 0.8 */
     margin-bottom: 0;
     position: relative;
     z-index: 11;
@@ -85,7 +85,7 @@ body {
     transform: translate(-50%, -50%);
     width: 900px;
     height: 300px;
-    background: radial-gradient(ellipse, rgba(255, 107, 53, 0.3) 0%, rgba(247, 147, 30, 0.2) 30%, transparent 70%);
+    background: radial-gradient(ellipse, rgba(255, 107, 53, 0.6) 0%, rgba(247, 147, 30, 0.4) 30%, transparent 70%); /* Increased opacity from 0.3/0.2 to 0.6/0.4 */
     border-radius: 50%;
     filter: blur(40px);
     z-index: 9;
@@ -178,7 +178,7 @@ body {
 .company-group span {
     font-size: 2.2rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.8); /* Increased from 0.2 to 0.8 for better visibility */
+    color: rgba(255, 255, 255, 0.6); /* Reduced opacity from 0.8 to 0.4 for more transparency */
     min-width: 100px;
     text-align: left;
 }
@@ -248,7 +248,7 @@ body {
     .company-group span {
         font-size: 0.9rem;
         min-width: 80px;
-        color: rgba(255, 255, 255, 0.8); /* Increased from default to match desktop */
+        color: rgba(255, 255, 255, 0.4); /* Reduced opacity from 0.8 to 0.4 for more transparency */
     }
     
     .company-group {
@@ -278,7 +278,7 @@ body {
     .company-group span {
         font-size: 0.8rem;
         min-width: 70px;
-        color: rgba(255, 255, 255, 0.8); /* Increased from default to match desktop */
+        color: rgba(255, 255, 255, 0.4); /* Reduced opacity from 0.8 to 0.4 for more transparency */
     }
     
     .row-inner {
